@@ -1,11 +1,10 @@
 package org.torresamaury.pixup.registro;
 
-public class Colonia
-{
+public class Colonia {
     private Integer id;
     private String nombre;
-    private String cp;
-    private Municipio municipio;
+    private String cp; // Código postal
+    private Municipio municipio; // Municipio asociado
 
     public Colonia() {
     }

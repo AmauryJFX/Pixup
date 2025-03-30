@@ -3,13 +3,11 @@ package org.torresamaury.pixup.registro;
 import org.torresamaury.pixup.util.ReadUtil;
 import org.torresamaury.pixup.vista.Menu;
 
-public class Estado extends Datos
-{
+public class Estado extends Datos {
     private Integer id;
     private String nombre;
 
     public Estado() {
-
     }
 
     public Estado(Integer id, String nombre) {
@@ -33,15 +31,15 @@ public class Estado extends Datos
         this.nombre = nombre;
     }
 
-
     @Override
     public void leerDatos() {
         Menu.Id();
         id = ReadUtil.getInstance().leerInt();
         Menu.nombre();
         nombre = ReadUtil.getInstance().leer();
-
     }
-
-
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

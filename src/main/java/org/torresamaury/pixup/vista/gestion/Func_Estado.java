@@ -1,18 +1,10 @@
 package org.torresamaury.pixup.vista.gestion;
-
-import org.torresamaury.pixup.registro.Datos;
 import org.torresamaury.pixup.registro.Estado;
-import org.torresamaury.pixup.util.ReadUtil;
-import org.torresamaury.pixup.vista.Ejecutable;
-import org.torresamaury.pixup.vista.Menu;
-import org.torresamaury.pixup.vista.SolicitaDatos;
 
-public class Func_Estado implements Ejecutable {
+import java.util.ArrayList;
+
+public class Func_Estado extends FuncionesBase<Estado> {
     private static Func_Estado func_estado;
-
-
-    public Func_Estado() {
-    }
 
     public static Func_Estado getInstance() {
         if (func_estado == null) {
@@ -22,34 +14,90 @@ public class Func_Estado implements Ejecutable {
     }
 
     @Override
-    public void run() {
-        boolean flag = true;
-        int opcion = 0;
-        Datos datos = null;
-        while (flag) {
-            datos = null;
-            Menu.principal4();
-            opcion = ReadUtil.getInstance().leerInt();
-            switch (opcion) {
-                case 1:
-                    datos = new Estado();
-                    break;
-                case 2:
+    public void alta() {
+        System.out.println("=== Alta de Estado ===");
+        System.out.println("Ingrese el ID del Estado: ");
+        int idEstado = scanner.nextInt();
+        scanner.nextLine();  // Consumir el salto de línea
+        System.out.println("Ingrese el nombre del Estado: ");
+        String nombreEstado = scanner.nextLine();
+        elementos.add(new Estado(idEstado, nombreEstado));
+        System.out.println("Estado agregado exitosamente.");
+    }
 
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    flag = false;
-                    break;
-                default:
-                    Menu.opcionInvalida();
-            }
-            if (datos != null) {
-                ((SolicitaDatos) datos).leerDatos();
+    @Override
+    public void baja() {
+        System.out.println("=== Baja de Estado ===");
+        System.out.println("Ingrese el ID del Estado a eliminar: ");
+        int idEliminar = scanner.nextInt();
+        scanner.nextLine();  // Consumir el salto de línea
+
+        boolean eliminado = elementos.removeIf(estado -> estado.getId().equals(idEliminar));
+        if (eliminado) {
+            System.out.println("Estado eliminado exitosamente.");
+        } else {
+            System.out.println("No se encontró un Estado con el ID ingresado.");
+        }
+    }
+
+    @Override
+    public void cambios() {
+        System.out.println("=== Cambios de Estado ===");
+        System.out.println("Ingrese el ID del Estado a modificar: ");
+        int idModificar = scanner.nextInt();
+        scanner.nextLine();  // Consumir el salto de línea
+
+        for (Estado estado : elementos) {
+            if (estado.getId().equals(idModificar)) {
+                System.out.println("Estado encontrado: " + estado.getNombre());
+                System.out.println("Ingrese el nuevo ID del Estado (actual: " + estado.getId() + "): ");
+                int nuevoId = scanner.nextInt();
+                scanner.nextLine();  // Consumir el salto de línea
+
+                System.out.println("Ingrese el nuevo nombre del Estado (actual: " + estado.getNombre() + "): ");
+                String nuevoNombre = scanner.nextLine();
+
+                // Actualizar el estado
+                estado.setId(nuevoId);
+                estado.setNombre(nuevoNombre);
+                System.out.println("Estado actualizado exitosamente.");
+                return; // Salir del método
             }
         }
+        System.out.println("No se encontró un Estado con el ID ingresado.");
+    }
+
+    @Override
+    public void consulta() {
+        System.out.println("=== Consulta de Estado ===");
+        System.out.println("Ingrese el ID del Estado a consultar: ");
+        int idConsulta = scanner.nextInt();
+        scanner.nextLine();
+
+        for (Estado estado : elementos) {
+            if (estado.getId().equals(idConsulta)) {
+                System.out.println("Información del Estado: " + estado.getNombre());
+                System.out.println("ID del estado: " + estado.getId());
+                return;
+            }
+        }
+        System.out.println("No se encontró un Estado con el ID ingresado.");
+    }
+
+    @Override
+    protected void mostrarMenu() {
+        System.out.println("_________________________________________");
+        System.out.println("Seleccione una opción:");
+        System.out.println("[1] Alta de Estado");
+        System.out.println("[2] Baja de Estado");
+        System.out.println("[3] Cambios de Estado");
+        System.out.println("[4] Consultar Estado");
+        System.out.println("[5] Salir");
+        System.out.println("_________________________________________");
+    }
+
+    // Método para obtener la lista de estados
+    public ArrayList<Estado> getElementos() {
+        return elementos; // Retorna la lista de estados
     }
 }
