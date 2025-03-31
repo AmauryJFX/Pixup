@@ -18,7 +18,7 @@ public class Func_Estado extends FuncionesBase<Estado> {
         System.out.println("=== Alta de Estado ===");
         System.out.println("Ingrese el ID del Estado: ");
         int idEstado = scanner.nextInt();
-        scanner.nextLine();  // Consumir el salto de línea
+        scanner.nextLine();
         System.out.println("Ingrese el nombre del Estado: ");
         String nombreEstado = scanner.nextLine();
         elementos.add(new Estado(idEstado, nombreEstado));
@@ -30,7 +30,7 @@ public class Func_Estado extends FuncionesBase<Estado> {
         System.out.println("=== Baja de Estado ===");
         System.out.println("Ingrese el ID del Estado a eliminar: ");
         int idEliminar = scanner.nextInt();
-        scanner.nextLine();  // Consumir el salto de línea
+        scanner.nextLine();
 
         boolean eliminado = elementos.removeIf(estado -> estado.getId().equals(idEliminar));
         if (eliminado) {
@@ -45,23 +45,21 @@ public class Func_Estado extends FuncionesBase<Estado> {
         System.out.println("=== Cambios de Estado ===");
         System.out.println("Ingrese el ID del Estado a modificar: ");
         int idModificar = scanner.nextInt();
-        scanner.nextLine();  // Consumir el salto de línea
+        scanner.nextLine();
 
         for (Estado estado : elementos) {
             if (estado.getId().equals(idModificar)) {
                 System.out.println("Estado encontrado: " + estado.getNombre());
                 System.out.println("Ingrese el nuevo ID del Estado (actual: " + estado.getId() + "): ");
                 int nuevoId = scanner.nextInt();
-                scanner.nextLine();  // Consumir el salto de línea
-
+                scanner.nextLine();
                 System.out.println("Ingrese el nuevo nombre del Estado (actual: " + estado.getNombre() + "): ");
                 String nuevoNombre = scanner.nextLine();
 
-                // Actualizar el estado
                 estado.setId(nuevoId);
                 estado.setNombre(nuevoNombre);
                 System.out.println("Estado actualizado exitosamente.");
-                return; // Salir del método
+                return;
             }
         }
         System.out.println("No se encontró un Estado con el ID ingresado.");
@@ -95,9 +93,7 @@ public class Func_Estado extends FuncionesBase<Estado> {
         System.out.println("[5] Salir");
         System.out.println("_________________________________________");
     }
-
-    // Método para obtener la lista de estados
     public ArrayList<Estado> getElementos() {
-        return elementos; // Retorna la lista de estados
+        return elementos;
     }
 }

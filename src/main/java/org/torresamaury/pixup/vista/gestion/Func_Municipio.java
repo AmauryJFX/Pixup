@@ -13,7 +13,6 @@ public class Func_Municipio extends FuncionesBase<Municipio> {
         }
         return func_municipio;
     }
-
     @Override
     public void alta() {
         System.out.println("=== Alta de Municipio ===");

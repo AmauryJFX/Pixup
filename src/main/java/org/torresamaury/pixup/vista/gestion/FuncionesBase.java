@@ -1,6 +1,6 @@
 package org.torresamaury.pixup.vista.gestion;
-
 import org.torresamaury.pixup.vista.Ejecutable;
+import org.torresamaury.pixup.vista.Menu;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -18,9 +18,9 @@ public abstract class FuncionesBase<T> implements Ejecutable {
     public void run() {
         boolean flag = true;
         int opcion;
-
         while (flag) {
             mostrarMenu();
+            Menu.principal4();
             while (true) {
                 try {
                     opcion = scanner.nextInt();
@@ -31,7 +31,6 @@ public abstract class FuncionesBase<T> implements Ejecutable {
                     scanner.next();
                 }
             }
-
             switch (opcion) {
                 case 1:
                     alta();
@@ -53,7 +52,6 @@ public abstract class FuncionesBase<T> implements Ejecutable {
             }
         }
     }
-
     protected abstract void mostrarMenu();
     public abstract ArrayList<T> getElementos();
 }

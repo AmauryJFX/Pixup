@@ -1,26 +1,21 @@
 package org.torresamaury.pixup.vista;
-
 import org.torresamaury.pixup.util.ReadUtil;
 import org.torresamaury.pixup.vista.gestion.Func_Domicilio;
 import org.torresamaury.pixup.vista.gestion.Func_Estado;
 import org.torresamaury.pixup.vista.gestion.Func_Municipio;
 import org.torresamaury.pixup.vista.gestion.Func_Colonia;
-
-
 public class Catalogo implements Ejecutable {
 
     private static Catalogo catalogo;
 
     public Catalogo() {
     }
-
     public static Catalogo getInstance() {
         if (catalogo == null) {
             catalogo = new Catalogo();
         }
         return catalogo;
     }
-
     @Override
     public void run() {
         boolean flag = true;
