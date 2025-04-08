@@ -19,11 +19,7 @@ public class Estado extends Catalogo
     }
 
     @Override
-    public String toString()
-    {
-        return "Estado{" +
-                "nombre='" + nombre + '\'' +
-                ", id=" + id +
-                '}';
+    public String toString() {
+        return nombre + " (id=" + id + ")";
     }
 }

@@ -4,6 +4,7 @@ import org.gerdoc.pixup.gui.LecturaAccion;
 import org.gerdoc.pixup.model.Catalogo;
 import org.gerdoc.pixup.util.ReadUtil;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,19 +116,94 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
             case 4:
                 print( );
                 break;
+            case 5:
+                guardarArchivo( );
+                break;
+            case 6:
+                leerArchivo( );
+                break;
         }
     }
+
+    public abstract File getFile( );
+
+    private void leerArchivo()
+    {
+        File file = null;
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+
+
+        try
+        {
+            file = getFile( );
+            fileInputStream = new FileInputStream( file );
+            objectInputStream = new ObjectInputStream( fileInputStream );
+            list = (List<T>) objectInputStream.readObject( );
+            objectInputStream.close();
+            fileInputStream.close();
+        }
+        catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println( "Leer archivo");
+    }
+
+    private void guardarArchivo()
+    {
+        File file = null;
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+
+        try
+        {
+            if( isListEmpty() )
+            {
+                System.out.println( "Lista vacia");
+                return;
+            }
+            file = getFile( );
+            fileOutputStream = new FileOutputStream( file );
+            objectOutputStream = new ObjectOutputStream( fileOutputStream );
+            objectOutputStream.writeObject( list );
+            objectOutputStream.close( );
+            fileOutputStream.close( );
+            System.out.println( "Archivo Guardado");
+        }
+        catch (FileNotFoundException e)
+        {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e)
+        {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+    public abstract String getTitulo( );
 
     @Override
     public void despliegaMenu()
     {
-        System.out.println("Menú de Estado:");
+        System.out.println("Menú de " + getTitulo( ) + ":");
         System.out.println("Seleccione una opcion:");
         System.out.println("1.-Agregar");
         System.out.println("2.-Editar");
         System.out.println("3.-Borrar");
         System.out.println("4.-Imprimir");
-        System.out.println("5.-Salir");
+        System.out.println("5.-Guardar a archivo");
+        System.out.println("6.-Leer de archivo");
+        System.out.println("7.-Salir");
     }
 
     @Override
@@ -139,7 +215,7 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
     @Override
     public int valorMaxMenu()
     {
-        return 5;
+        return 7;
     }
 
 }
