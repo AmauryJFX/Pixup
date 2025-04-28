@@ -4,27 +4,27 @@ import java.io.Serializable;
 
 public class Artista extends Catalogo implements Serializable
 {
-    private String nombre;
+    private String artista;
 
     public Artista(String nombre) {
-        this.nombre = nombre;
+        this.artista = artista;
     }
 
     public Artista() {
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getArtista() {
+        return artista;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setArtista(String artista) {
+        this.artista = artista;
     }
 
     @Override
     public String toString() {
         return "Artista{" +
-                "nombre='" + nombre + '\'' +
+                "nombre='" + artista + '\'' +
                 ", id=" + id +
                 '}';
     }

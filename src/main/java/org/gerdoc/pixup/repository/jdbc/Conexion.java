@@ -1,6 +1,7 @@
 package org.gerdoc.pixup.repository.jdbc;
 
 import org.gerdoc.pixup.model.Catalogo;
+import org.gerdoc.pixup.model.Estado;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -75,7 +76,7 @@ public abstract class Conexion<T extends Catalogo>
                     return false;
                 }
             }
-            return connection.isClosed();
+            return !connection.isClosed();
         }
         catch (SQLException e)
         {
@@ -102,5 +103,6 @@ public abstract class Conexion<T extends Catalogo>
             ex.printStackTrace();
         }
     }
+
 
 }
