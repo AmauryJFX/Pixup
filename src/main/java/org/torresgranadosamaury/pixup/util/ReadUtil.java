@@ -70,4 +70,16 @@ public class ReadUtil
         }
         return null;
     }
+    public static Float readFloat() {
+        String valor;
+        while (true) {
+            valor = read();
+            try {
+                return Float.valueOf(valor);
+            } catch (NumberFormatException e) {
+                System.out.print("Número decimal inválido, intente nuevamente: ");
+            }
+        }
+    }
+
 }

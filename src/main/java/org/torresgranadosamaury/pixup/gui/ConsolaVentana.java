@@ -51,7 +51,8 @@ public class ConsolaVentana  extends LecturaAccion
         }
         if(opcion==2)
         {
-            ejecutable = Ventana.getInstance( );
+            new Ventana().setVisible(true);
+
         }
         ejecutable.setFlag( true );
         ejecutable.run( );

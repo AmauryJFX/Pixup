@@ -1,6 +1,7 @@
 package org.torresgranadosamaury.pixup.gui.consola;
 
 import org.torresgranadosamaury.pixup.gui.LecturaAccion;
+import org.torresgranadosamaury.pixup.model.Catalogo;
 import org.torresgranadosamaury.pixup.util.ReadUtil;
 
 import java.io.*;
@@ -215,6 +216,19 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
     public int valorMaxMenu()
     {
         return 7;
+    }
+    public void menu() {
+        int op;
+        do {
+            despliegaMenu();
+            op = ReadUtil.readInt();
+            if (op >= valorMinMenu() && op <= valorMaxMenu()) {
+                opcion = op;
+                procesaOpcion();
+            } else {
+                System.out.println("Opción fuera de rango");
+            }
+        } while (op != valorMaxMenu());
     }
 
 }

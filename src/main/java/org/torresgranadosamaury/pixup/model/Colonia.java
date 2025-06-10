@@ -1,65 +1,27 @@
 package org.torresgranadosamaury.pixup.model;
 
-import java.io.Serializable;
 
-public class Colonia extends Catalogo implements Serializable
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Entity
+@Table( name = "TBL_COLONIA" )
+public class Colonia extends Catalogo
 {
+    @Column(name = "COLONIA", nullable = false)
     private String nombre;
-    private String cp;
-    private Municipio municipio;
 
-    public Colonia()
-    {
-    }
+    @Column(name = "CP", nullable = false)
+    private String codigoPostal;
 
-    public Colonia(String nombre, String cp, Municipio municipio)
-    {
-        this.nombre = nombre;
-        this.cp = cp;
-        this.municipio = municipio;
-    }
-
-    public String getNombre()
-    {
-        return nombre;
-    }
-
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
-
-    public String getCp()
-    {
-        return cp;
-    }
-
-    public void setCp(String cp)
-    {
-        this.cp = cp;
-    }
-
-    public Municipio getMunicipio()
-    {
-        return municipio;
-    }
-
-    public void setMunicipio(Municipio municipio)
-    {
-        this.municipio = municipio;
-    }
-
-    @Override
-    public String toString() {
-        return "Colonia{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", cp='" + cp + '\'' +
-                ", municipio=" + (municipio != null ? municipio.getNombre() + " (id=" + municipio.getId() + ")" : "null") +
-                '}';
-    }
-
-
-    public void setColonia(Colonia colonia) {
-    }
+    @Column(name = "TBL_MUNICIPIO_ID", nullable = false)
+    private Integer idMunicipio;
 }
+

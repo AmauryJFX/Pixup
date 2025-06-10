@@ -1,48 +1,22 @@
 package org.torresgranadosamaury.pixup.model;
 
-import java.io.Serializable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
 
-public class Municipio extends Catalogo implements Serializable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Entity
+@Table( name = "TBL_MUNICIPIO" )
+public class Municipio extends Catalogo
 {
+    @Column( name ="MUNICIPIO" , nullable = false )
     private String nombre;
-    private Estado estado;
 
-    public Municipio()
-    {
-    }
-
-    public Municipio(String nombre, Estado estado)
-    {
-        this.nombre = nombre;
-        this.estado = estado;
-    }
-
-    public String getNombre()
-    {
-        return nombre;
-    }
-
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
-
-    public Estado getEstado()
-    {
-        return estado;
-    }
-
-    public void setEstado(Estado estado)
-    {
-        this.estado = estado;
-    }
-
-    @Override
-    public String toString() {
-        return "Municipio{" +
-                "id=" + id +
-                ", estado=" + estado +
-                ", nombre='" + nombre + '\'' +
-                '}';
-    }
+    @Column( name ="TBL_ESTADO_ID" , nullable = false )
+    private Integer idEstado;
 }

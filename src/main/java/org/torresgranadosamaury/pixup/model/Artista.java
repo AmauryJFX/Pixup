@@ -1,32 +1,19 @@
 package org.torresgranadosamaury.pixup.model;
 
-import java.io.Serializable;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
 
-public class Artista extends Catalogo implements Serializable
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@Entity
+@Table( name = "TBL_ARTISTA" )
+public class Artista extends Catalogo
 {
+    @Column( name ="NOMBRE" , nullable = false )
     private String nombre;
-
-    public Artista(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Artista() {
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    @Override
-    public String toString() {
-        return "Artista{" +
-                "nombre='" + nombre + '\'' +
-                ", id=" + id +
-                '}';
-    }
-
 }

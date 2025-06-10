@@ -18,7 +18,7 @@ public final class HibernateUtil
         {
             System.out.println( "HibernateUtil.init()");
             registry = new StandardServiceRegistryBuilder()
-                    .configure("hibernate.cfg.xml") // se carga la configuracion hibernate
+                    .configure("hibernate.cfg.xml")
                     .build();
             System.out.println( "HibernateUtil.registry");
             return registry != null;
