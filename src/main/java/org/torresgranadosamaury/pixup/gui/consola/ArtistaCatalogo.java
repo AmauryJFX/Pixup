@@ -9,7 +9,6 @@ import java.io.File;
 
 public class ArtistaCatalogo extends Catalogos<Artista> {
 
-    /* ---------- singleton ---------- */
     private static ArtistaCatalogo instancia;
     public static ArtistaCatalogo getInstance() {
         if (instancia == null) instancia = new ArtistaCatalogo();
@@ -52,8 +51,7 @@ public class ArtistaCatalogo extends Catalogos<Artista> {
             System.out.println("Error al modificar en BD.");
         }
     }
-
-    /* ---------- borrado ---------- */
+    
     @Override
     public void remove() {
         refresh();

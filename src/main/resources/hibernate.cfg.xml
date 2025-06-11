@@ -29,6 +29,8 @@
 		<mapping class="org.torresgranadosamaury.pixup.model.Usuario"/>
 		<mapping class="org.torresgranadosamaury.pixup.model.Domicilio"/>
 		<mapping class="org.torresgranadosamaury.pixup.model.Orden"/>
+		<mapping class="org.torresgranadosamaury.pixup.model.Cancion"/>
 
-    </session-factory>
+
+	</session-factory>
 </hibernate-configuration>

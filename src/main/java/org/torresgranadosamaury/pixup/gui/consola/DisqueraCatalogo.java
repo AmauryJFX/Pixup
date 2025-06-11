@@ -58,4 +58,28 @@ public class DisqueraCatalogo extends Catalogos<Disquera> {
 
     @Override public File   getFile()   { return new File("Disquera.list"); }
     @Override public String getTitulo() { return "Disqueras"; }
+    // Métodos seguros para testing automatizado sin usar ReadUtil
+
+    public boolean processNewT_Test(Disquera d) {
+        if (dao.save(d)) {
+            list.add(d);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean processEditT_Test(Disquera d, String nuevoNombre) {
+        d.setNombre(nuevoNombre);
+        return dao.update(d);
+    }
+
+    public boolean eliminarPorId(int id) {
+        t = list.stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+        if (t != null) {
+            list.remove(t);
+            return dao.delete(t);
+        }
+        return false;
+    }
+
 }

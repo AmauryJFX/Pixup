@@ -47,55 +47,44 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
         }
     }
 
-    public void edit( )
-    {
-        if( isListEmpty( ) )
-        {
-            System.out.println( "No hay elementos" );
+    public void edit() {
+        if (isListEmpty()) {
+            System.out.println("No hay elementos");
             return;
         }
-        flag2 = true;
-        while ( flag2 )
-        {
-            System.out.println( "Ingrese el id del elemento a editar" );
-            print( );
-            t = list.stream().filter( e -> e.getId().equals( ReadUtil.readInt( ) ) ).findFirst().orElse( null );
-            if( t == null )
-            {
-                System.out.println( "Id incorrecto, intentelo nuevamente" );
-            }
-            else
-            {
-                processEditT( t );
-                flag2 = false;
-                System.out.println( "Elemento modificado" );
-            }
+
+        print();
+        System.out.println("Ingrese el ID del elemento a editar:");
+        int id = ReadUtil.readInt();
+
+        t = list.stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+
+        if (t == null) {
+            System.out.println("ID incorrecto. No se encontró el elemento.");
+        } else {
+            processEditT(t);
+            System.out.println("Elemento modificado");
         }
     }
 
-    public void remove( )
-    {
-        if( isListEmpty( ) )
-        {
-            System.out.println( "No hay elementos" );
+
+    public void remove() {
+        if (isListEmpty()) {
+            System.out.println("No hay elementos");
             return;
         }
-        flag2 = true;
-        while ( flag2 )
-        {
-            System.out.println( "Ingrese el id del elemento a borrar" );
-            print( );
-            t = list.stream().filter( e -> e.getId().equals( ReadUtil.readInt( ) ) ).findFirst().orElse( null );
-            if( t==null )
-            {
-                System.out.println( "Id incorrecto, intentelo nuevamente" );
-            }
-            else
-            {
-                list.remove( t );
-                flag2 = false;
-                System.out.println( "Elemento borrado" );
-            }
+
+        print();
+        System.out.println("Ingrese el ID del elemento a borrar:");
+        int id = ReadUtil.readInt();
+
+        t = list.stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+
+        if (t == null) {
+            System.out.println("ID incorrecto. No se encontró el elemento.");
+        } else {
+            list.remove(t);
+            System.out.println("Elemento borrado");
         }
     }
 
@@ -201,8 +190,6 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
         System.out.println("2.-Editar");
         System.out.println("3.-Borrar");
         System.out.println("4.-Imprimir");
-        System.out.println("5.-Guardar a archivo");
-        System.out.println("6.-Leer de archivo");
         System.out.println("7.-Salir");
     }
 
@@ -217,6 +204,10 @@ public abstract class Catalogos<T extends Catalogo> extends LecturaAccion
     {
         return 7;
     }
+    public List<T> getList() {
+        return list;
+    }
+
     public void menu() {
         int op;
         do {

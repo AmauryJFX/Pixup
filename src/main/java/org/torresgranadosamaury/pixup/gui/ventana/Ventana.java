@@ -3,11 +3,6 @@ package org.torresgranadosamaury.pixup.gui.ventana;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * GUI básica con CardLayout.
- *  • Menú Catálogos → Estados, Municipios, Colonias, Disco
- *  • Sub-menú Disco → Disco, Artista, Canción, Disquera, Género Musical
- */
 public class Ventana extends JFrame {
 
     private final CardLayout cards      = new CardLayout();
@@ -29,7 +24,7 @@ public class Ventana extends JFrame {
         cards.show(contenedor, TAG_MENU_CATALOGOS);
     }
 
-    /* ---------- menú catálogos ---------- */
+
     private JPanel crearPanelCatalogos() {
         JPanel p = new JPanel(new GridLayout(5, 1, 10, 10));
         p.setBorder(BorderFactory.createEmptyBorder(20, 60, 20, 60));
@@ -42,12 +37,15 @@ public class Ventana extends JFrame {
         return p;
     }
 
-    /* ---------- sub-menú Disco ---------- */
     private JPanel crearPanelDisco() {
         JPanel p = new JPanel(new GridLayout(6, 1, 10, 10));
         p.setBorder(BorderFactory.createEmptyBorder(20, 60, 20, 60));
 
-        p.add(boton("Disco",          () -> noImplementado()));
+        p.add(boton("Disco", () -> {
+            contenedor.add(new DiscoPanel(() -> cards.show(contenedor, TAG_MENU_DISCO)), "discoPanel");
+            cards.show(contenedor, "discoPanel");
+        }));
+
         p.add(boton("Artista",        () -> noImplementado()));
         p.add(boton("Canción",        () -> noImplementado()));
         p.add(boton("Disquera",       () -> noImplementado()));
@@ -56,19 +54,16 @@ public class Ventana extends JFrame {
         return p;
     }
 
-    /* ---------- helper para crear botones ---------- */
     private JButton boton(String texto, Runnable onClick) {
         JButton b = new JButton(texto);
         b.addActionListener(e -> onClick.run());
         return b;
     }
 
-    /* ---------- placeholder ---------- */
     private void noImplementado() {
         JOptionPane.showMessageDialog(this, "Función no implementada todavía.");
     }
 
-    /* ---------- main ---------- */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Ventana().setVisible(true));
     }

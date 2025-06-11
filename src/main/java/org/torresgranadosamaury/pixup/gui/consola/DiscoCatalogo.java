@@ -59,7 +59,6 @@ public class DiscoCatalogo extends LecturaAccion {
         }
     }
 
-    /* ---------- agregar ---------- */
     private void agregarDisco() {
         Disco d = new Disco();
 
@@ -94,7 +93,7 @@ public class DiscoCatalogo extends LecturaAccion {
         System.out.println(dao.save(d) ? "Disco guardado." : "Error al guardar.");
     }
 
-    /* ---------- modificar ---------- */
+
     private void modificarDisco() {
         System.out.print("ID a modificar: ");
         int id = ReadUtil.readInt();
@@ -151,7 +150,7 @@ public class DiscoCatalogo extends LecturaAccion {
         System.out.println(dao.update(d) ? "Disco modificado." : "Error al modificar.");
     }
 
-    /* ---------- buscar ---------- */
+
     private void buscarDisco() {
         System.out.print("ID: ");
         int id = ReadUtil.readInt();
@@ -168,7 +167,7 @@ public class DiscoCatalogo extends LecturaAccion {
                 d.getIdArtista(), d.getIdDisquera(), d.getIdGeneroMusical());
     }
 
-    /* ---------- eliminar ---------- */
+
     private void eliminarDisco() {
         System.out.print("ID a eliminar: ");
         int id = ReadUtil.readInt();

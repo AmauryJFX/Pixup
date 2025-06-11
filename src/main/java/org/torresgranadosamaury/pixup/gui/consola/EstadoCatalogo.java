@@ -15,7 +15,7 @@ public class EstadoCatalogo extends Catalogos<Estado> {
     private EstadoCatalogo() {
         super();
         estadoDao = new EstadoDaoImpl();
-        cargarDesdeBD(); // al iniciar, carga los datos de la base
+        cargarDesdeBD();
     }
 
     public static EstadoCatalogo getInstance() {
@@ -35,7 +35,7 @@ public class EstadoCatalogo extends Catalogos<Estado> {
         System.out.println("Teclee un estado:");
         estado.setNombre(ReadUtil.read());
         if (estadoDao.save(estado)) {
-            list.add(estado); // también lo agrega a la lista local para imprimir
+            list.add(estado);
             return true;
         }
         return false;
@@ -83,7 +83,7 @@ public class EstadoCatalogo extends Catalogos<Estado> {
                 System.out.println("Id incorrecto, intente nuevamente");
             } else {
                 if (estadoDao.delete(t)) {
-                    list.remove(t); // quitar de la lista local también
+                    list.remove(t);
                     System.out.println("Elemento borrado");
                 } else {
                     System.out.println("Error al borrar el elemento de la base de datos");
