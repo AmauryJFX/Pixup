@@ -2,10 +2,7 @@ package org.torresgranadosamaury.pixup.gui.consola;
 
 import org.torresgranadosamaury.pixup.util.ReadUtil;
 
-/**
- * Menú principal de catálogos:
- * 1 Estado   | 2 Municipio | 3 Colonia | 4 Sub-menú Disco | 5 Salir
- */
+
 public class MenuCatalogos {
 
     public void menu() {
